@@ -1,4 +1,3 @@
-import WooCommerceRestApi from "@woocommerce/woocommerce-rest-api";
 import { useState } from "react";
 
 const Login = (props:any) => {
@@ -7,13 +6,7 @@ const Login = (props:any) => {
     const [consumerSecret, setConsumerSecret] = useState("");
 
     const handleLogin = () => {
-        const new_api = new WooCommerceRestApi({
-          url: "https://www.fromfalltospring.shop",
-          consumerKey: consumerKey,
-          consumerSecret: consumerSecret,
-          version: "wc/v3"
-        });
-        onLoggedIn(new_api)
+        onLoggedIn(consumerKey,consumerSecret)
     }
 
     return (
