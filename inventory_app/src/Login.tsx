@@ -18,7 +18,6 @@ const Login = (props:any) => {
             <input value={consumerSecret} onChange={(e)=>{setConsumerSecret(e.target.value)}}></input>
             <button onClick={handleLogin}>Login</button>
         </div>
-
     )
 }
 

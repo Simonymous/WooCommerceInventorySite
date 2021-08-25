@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Login from './Login';
 import WooCommerceRestApi from "@woocommerce/woocommerce-rest-api";
 import Inventory from './Inventory';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 function App() {
 
@@ -14,10 +15,12 @@ function App() {
     version: "wc/v3"
   });
 
-  const [products, setProducts] = useState(null);
+  const [products, setProducts] = useState([]);
   const [api, setApi] = useState(init_api)
+  const [spinnerVisible, setSpinnerVisible] = useState(false)
 
   const onLoggedIn = (consumerKey:string,consumerSecret:string) => {
+    setSpinnerVisible(true)
 
     const new_api = new WooCommerceRestApi({
       url: "https://www.fromfalltospring.shop",
@@ -34,13 +37,21 @@ function App() {
   }
 
 
-  if(products) {
+  if(products.length > 0) {
     return (
       <Inventory products={products} api={api}/>
     )
   } else {
     return (
-      <Login onLoggedIn={onLoggedIn}/>
+      <div>
+        <Login onLoggedIn={onLoggedIn}/>
+        {
+          spinnerVisible &&
+          <CircularProgress />
+        }
+
+      </div>
+
     );
   }
 }

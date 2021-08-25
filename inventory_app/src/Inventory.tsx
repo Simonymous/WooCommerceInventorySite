@@ -6,6 +6,9 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import { useState } from 'react';
+import WooCommerceRestApi from '@woocommerce/woocommerce-rest-api';
+import { Product } from './ProductInterface';
 
 const useStyles = makeStyles({
     table: {
@@ -13,12 +16,13 @@ const useStyles = makeStyles({
     },
   });
 
-
-interface Product {
-
+interface InventoryProps {
+    api:WooCommerceRestApi,
+    products:Product[]
 }
 
-const Inventory = (props:any) => {
+const Inventory = (props:InventoryProps) => {
+    const [variations,setVariations] = useState([]);
 
     const { api, products } = props
     console.log(api)
@@ -38,10 +42,9 @@ const Inventory = (props:any) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {products.map((product:any) => (
+          {products.map((product:Product) => (
             <TableRow key={product.name}>
               <TableCell component="th" scope="row">{product.name}</TableCell>
-
               <TableCell align="right">{product.price}</TableCell>
               <TableCell align="right"><a target="_blank" href={product.permalink}>LINK</a></TableCell>
               <TableCell align="right">{product.id}</TableCell>
