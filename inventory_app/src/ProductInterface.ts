@@ -1,9 +1,8 @@
 export interface Product {
     name:string,
     price:string,
+    stock:number,
     permalink:string,
-    categories: [],
-    variations: [],
+    category: string,
     id:number
-
 }

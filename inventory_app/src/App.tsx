@@ -2,7 +2,7 @@ import './App.css';
 import { useState } from 'react';
 import Login from './Login';
 import WooCommerceRestApi from "@woocommerce/woocommerce-rest-api";
-import Inventory from './Inventory';
+import ProductInventory from './Inventory';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 function App() {
@@ -42,11 +42,12 @@ function App() {
   }
 
 
+  const Inventorys = products.map((product:any)=>
+    <ProductInventory product={product} api={api}/>
+  )
 
   if(products.length > 0) {
-    return (
-      <Inventory products={products} api={api}/>
-    )
+    return (<div>{Inventorys}</div>)
   } else {
     return (
       <div>
