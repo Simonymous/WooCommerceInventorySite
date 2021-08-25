@@ -21,14 +21,35 @@ interface InventoryProps {
     products:Product[]
 }
 
+interface ProductVariation extends Product {
+    stock_quantity: number
+}
+
 const Inventory = (props:InventoryProps) => {
-    const [variations,setVariations] = useState([]);
+    const [variations,setVariations] = useState<ProductVariation[]>([]);
 
     const { api, products } = props
-    console.log(api)
+    // console.log(api)
     console.log(products)
 
     const classes = useStyles()
+
+
+    const getVariations = (product_id:number,variation_id:number) => {
+      const getString = "products/"+product_id+"/variations/"+variation_id
+      api.get(getString).then((res:any)=> {
+        const { data } = res
+        console.log(data)
+      })
+    }
+
+    products.forEach((product) => {
+      product.variations.forEach((variation_id:number) => {
+        getVariations(product.id,variation_id)
+      })
+
+    })
+
 
     return (
     <TableContainer component={Paper}>
@@ -36,6 +57,7 @@ const Inventory = (props:InventoryProps) => {
         <TableHead>
           <TableRow>
             <TableCell>Name</TableCell>
+            <TableCell>Anzahl</TableCell>
             <TableCell align="right">Preis</TableCell>
             <TableCell align="right">Link</TableCell>
             <TableCell align="right">ID</TableCell>
@@ -45,6 +67,7 @@ const Inventory = (props:InventoryProps) => {
           {products.map((product:Product) => (
             <TableRow key={product.name}>
               <TableCell component="th" scope="row">{product.name}</TableCell>
+              <TableCell component="th" scope="row">?</TableCell>
               <TableCell align="right">{product.price}</TableCell>
               <TableCell align="right"><a target="_blank" href={product.permalink}>LINK</a></TableCell>
               <TableCell align="right">{product.id}</TableCell>

@@ -15,7 +15,7 @@ function App() {
     version: "wc/v3"
   });
 
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState<any[]>([]);
   const [api, setApi] = useState(init_api)
   const [spinnerVisible, setSpinnerVisible] = useState(false)
 
@@ -34,7 +34,13 @@ function App() {
         const { data } = res
         setProducts(data)
     })
+    .catch((error) => {
+      alert("Failed To Login!")
+      setSpinnerVisible(false)
+      console.log(error)
+  })
   }
+
 
 
   if(products.length > 0) {
