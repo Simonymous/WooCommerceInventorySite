@@ -13,9 +13,13 @@ const Login = (props:any) => {
         <div>
             <h1>FFTS Inventory Login</h1>
             <label>Consumer-Key:</label>
+            <br/>
             <input value={consumerKey} onChange={(e)=>{setConsumerKey(e.target.value)}}></input>
+            <br/>
             <label>Consumer-Secret:</label>
+            <br/>
             <input value={consumerSecret} onChange={(e)=>{setConsumerSecret(e.target.value)}}></input>
+            <br/>
             <button onClick={handleLogin}>Login</button>
         </div>
     )

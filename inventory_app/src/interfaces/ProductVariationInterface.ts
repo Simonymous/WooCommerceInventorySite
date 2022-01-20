@@ -1,4 +1,4 @@
-export interface Product {
+export interface ProductVariation {
     name:string,
     price:string,
     stock:number,

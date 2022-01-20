@@ -46,7 +46,7 @@ function App() {
     <ProductInventory product={product} api={api}/>
   )
 
-  if(products.length > 0) {
+  if(products.length > 0 && api.consumerKey != "a") {
     return (<div>{Inventorys}</div>)
   } else {
     return (
