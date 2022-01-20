@@ -8,7 +8,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { ChangeEvent, useState } from 'react';
 import WooCommerceRestApi from '@woocommerce/woocommerce-rest-api';
-import { Product } from './ProductInterface';
+import { Product } from './interfaces/ProductInterface';
 import { useEffect } from 'react';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import TextField from '@material-ui/core/TextField';
@@ -59,7 +59,7 @@ const ProductInventory = (props:InventoryProps) => {
 
     const classes = useStyles()
 
-    if(variations.length > 0) {
+    if(variations.length >= 0) {
       return (
         <div>
           <h3>{product.name}</h3>
