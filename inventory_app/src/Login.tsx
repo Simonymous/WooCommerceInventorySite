@@ -6,6 +6,7 @@ const Login = (props:any) => {
     const [consumerSecret, setConsumerSecret] = useState("");
 
     const handleLogin = () => {
+        console.log("Trying to Login")
         onLoggedIn(consumerKey,consumerSecret)
     }
 

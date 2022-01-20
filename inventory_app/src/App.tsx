@@ -31,6 +31,7 @@ function App() {
     setApi(new_api)
 
     new_api.get("products").then((res:any)=> {
+        console.log("Response ok")
         const { data } = res
         setProducts(data)
     })

@@ -60,6 +60,12 @@ const ProductInventory = (props:InventoryProps) => {
 
     const classes = useStyles()
 
+    let bestandswert = 0
+
+    variations.forEach(variation=>{
+      bestandswert += variation.stock * +variation.price
+    })
+
     if(variations.length >= 0) {
       return (
         <div>
@@ -120,6 +126,7 @@ const ProductInventory = (props:InventoryProps) => {
                   </TableBody>
                 </Table>
               </TableContainer>
+              <div>Gesamtwert Lagerbestand: {bestandswert} €</div>
         </div>
       )
     } else {
